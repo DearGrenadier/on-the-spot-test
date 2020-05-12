@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Container, Row, Col, Button, Table } from 'react-bootstrap'
 import {
   Link
 } from 'react-router-dom'
 
 import useBankAccounts from 'hooks/useBankAccounts'
-import API from 'api'
 
 const TableRow = ({ bankAccount }) => (
   <tr>
