@@ -1,0 +1,7 @@
+Dockerfile.be.dockerignore
+.gitignore
+client/
+.git/
+log/
+tmp/
+README.md
