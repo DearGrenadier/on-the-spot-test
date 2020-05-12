@@ -2,10 +2,7 @@ class MoneyTransfersController < ApplicationController
   def create
     MoneyTransferService.new(transfer_params).call!
     head :ok
-  rescue AccountNotFound,
-         NegativeAmount,
-         ActiveRecord::StaleObjectError,
-         ActiveRecord::RecordInvalid => e
+  rescue StandardError => e
     render json: { error: e.message }, status: :unprocessable_entity
   end
 
