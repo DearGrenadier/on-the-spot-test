@@ -58,7 +58,7 @@ describe 'money transfer route', type: :request do
         receiver = create(:bank_account, balance: 20)
         params = { sender_id: sender.id, receiver_id: receiver.id, amount: 1 }
 
-        processes = 2.times.map do
+        processes = 5.times.map do
           ForkBreak::Process.new do |breakpoints|
             original_method = BankAccount.method(:find_by_id)
 
@@ -75,8 +75,8 @@ describe 'money transfer route', type: :request do
         processes.each { |process| process.run_until(:find_by_id).wait }
         processes.each { |process| process.finish.wait }
 
-        expect(receiver.reload.balance).to eq(22)
-        expect(sender.reload.balance).to eq(8)
+        expect(receiver.reload.balance).to eq(25)
+        expect(sender.reload.balance).to eq(5)
       end
     end
   end
